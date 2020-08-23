@@ -174,6 +174,7 @@ svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/c
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby package/lean/coremark/adbyby
 # File Transfer
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-filetransfer  package/lean/luci-app-filetransfer
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-fs package/lean/luci-lib-fs
 #访问控制
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accesscontrol package/lean/luci-app-accesscontrol
 #AutoCore
