@@ -81,7 +81,7 @@ LUCI版本：19.07（当日最新）
 <img src="https://cdn.jsdelivr.net/gh/02015678/R2S-OpenWrt@master/PIC/oled.jpg" width="1024" />
 
 ### 系统-文件传输：
-<img src="https://raw.githubusercontent.com/02015678/R2S-OpenWrt/master/PIC/system-filetransfer.png" width="1024" />
+<img src="https://cdn.jsdelivr.net/gh/02015678/R2S-OpenWrt@master/PIC/system-filetransfer.png" width="1024" />
 
 ### 统计-温度历史
-<img src="https://raw.githubusercontent.com/02015678/R2S-OpenWrt/master/PIC/statistics-thermal.png" width="1024" />
+<img src="https://cdn.jsdelivr.net/gh/02015678/R2S-OpenWrt@master/PIC/statistics-thermal.png" width="1024" />
