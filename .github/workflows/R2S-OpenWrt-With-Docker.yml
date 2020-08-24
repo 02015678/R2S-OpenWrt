@@ -1,13 +1,9 @@
 name: R2S-OpenWrt-With-Docker
 
 on:
-#  push:
-#    branches: 
-#      - master
-  schedule:
-    - cron: 15 11 * * *
-#  watch:
-#    types: [started]
+  push:
+    paths:
+      - '.github/workflows/R2S-OpenWrt-With-Docker.yml'
 
 jobs:
   build:
