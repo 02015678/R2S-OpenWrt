@@ -22,7 +22,7 @@ wget -O - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bion
 ```
 一键编译（测试编译环境是Ubuntu18.04）：
 ```shell
-git clone https://github.com/project-openwrt/R2S-OpenWrt.git && cd R2S-OpenWrt && bash onekeyr2s.sh
+git clone https://github.com/02015678/R2S-OpenWrt.git && cd R2S-OpenWrt && bash onekeyr2s.sh
 ```
 ### 注意事项：
 0.OC至1.608GHz（未提升电压，原则上不会增加大量额外发热）。建议不要超过1.5GHz。
@@ -69,13 +69,19 @@ LUCI版本：19.07（当日最新）
 4.核心频率1.608GHz。建议不要超过1.5GHz。
 
 ### 固件预览：
-<img src="https://cdn.jsdelivr.net/gh/project-openwrt/R2S-OpenWrt@master/PIC/app.png" width="1024" />
+<img src="https://cdn.jsdelivr.net/gh/02015678/R2S-OpenWrt@master/PIC/app.png" width="1024" />
 
 ### 防呆指导：
-<img src="https://cdn.jsdelivr.net/gh/project-openwrt/R2S-OpenWrt@master/PIC/offload.png" width="1024" />
-<img src="https://cdn.jsdelivr.net/gh/project-openwrt/R2S-OpenWrt@master/PIC/fullcone1.png" width="1024" />
-<img src="https://cdn.jsdelivr.net/gh/project-openwrt/R2S-OpenWrt@master/PIC/fullcone2.png" width="1024" />
-<img src="https://cdn.jsdelivr.net/gh/project-openwrt/R2S-OpenWrt@master/PIC/fullcone3.png" width="1024" />
+<img src="https://cdn.jsdelivr.net/gh/02015678/R2S-OpenWrt@master/PIC/offload.png" width="1024" />
+<img src="https://cdn.jsdelivr.net/gh/02015678/R2S-OpenWrt@master/PIC/fullcone1.png" width="1024" />
+<img src="https://cdn.jsdelivr.net/gh/02015678/R2S-OpenWrt@master/PIC/fullcone2.png" width="1024" />
+<img src="https://cdn.jsdelivr.net/gh/02015678/R2S-OpenWrt@master/PIC/fullcone3.png" width="1024" />
 
 ### OLED效果预览：
-<img src="https://cdn.jsdelivr.net/gh/project-openwrt/R2S-OpenWrt@master/PIC/oled.jpg" width="1024" />
+<img src="https://cdn.jsdelivr.net/gh/02015678/R2S-OpenWrt@master/PIC/oled.jpg" width="1024" />
+
+### 系统-文件传输：
+<img src="https://raw.githubusercontent.com/02015678/R2S-OpenWrt/master/PIC/system-filetransfer.png" width="1024" />
+
+### 统计-温度历史
+<img src="https://raw.githubusercontent.com/02015678/R2S-OpenWrt/master/PIC/statistics-thermal.png" width="1024" />
