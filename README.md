@@ -4,6 +4,7 @@
 ### 下载地址：
 上游Repo发布的固件：
 https://github.com/project-openwrt/R2S-OpenWrt/releases
+
 这个Repo发布的固件：
 https://github.com/02015678/R2S-OpenWrt/releases
 
