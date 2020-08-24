@@ -4,9 +4,13 @@
 ### 请勿用于商业用途!!! 请勿用于商业用途!!! 请勿用于商业用途!!! 请勿用于商业用途!!! 请勿用于商业用途!!!
 
 ### 下载地址：
+上游Repo发布的固件：
 https://github.com/project-openwrt/R2S-OpenWrt/releases
+这个Repo发布的固件：
+https://github.com/02015678/R2S-OpenWrt/releases
 
 ### 追新党可以在Action中取每日更新（可能会翻车，风险自担，需要登陆github后才能下载）：
+上游Repo发布的固件：
 https://github.com/project-openwrt/R2S-OpenWrt/actions
 
 ### Docker版本自行fork，更换Docker版seed，并在自己的Action中自取
