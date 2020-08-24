@@ -2,9 +2,13 @@
 [![NanoPi-R2S_Openwrt1907_Fat](https://github.com/02015678/R2S-OpenWrt/workflows/R2S-OpenWrt-Without-Docker/badge.svg)](https://github.com/02015678/R2S-OpenWrt/actions?query=workflow%3AR2S-OpenWrt-Without-Docker) 
 
 ### 下载地址：
+上游Repo发布的固件：
 https://github.com/project-openwrt/R2S-OpenWrt/releases
+这个Repo发布的固件：
+https://github.com/02015678/R2S-OpenWrt/releases
 
 ### 追新党可以在Action中取每日更新（可能会翻车，风险自担，需要登陆github后才能下载）：
+上游Repo发布的固件：
 https://github.com/project-openwrt/R2S-OpenWrt/actions
 
 ### 本地一键编译命令（注意装好依赖）：
