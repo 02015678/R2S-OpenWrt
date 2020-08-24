@@ -29,7 +29,7 @@ wget -O - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bion
 git clone https://github.com/02015678/R2S-OpenWrt.git && cd R2S-OpenWrt && bash onekeyr2s.sh
 ```
 ### 注意事项：
-0.OC至1.608GHz（未提升电压，原则上不会增加大量额外发热）。建议不要超过1.5GHz。
+~~0.OC至1.608GHz（未提升电压，原则上不会增加大量额外发热）。建议不要超过1.5GHz。~~
 
 1.登陆IP：192.168.1.1 密码：无
 
