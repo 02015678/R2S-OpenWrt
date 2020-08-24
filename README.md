@@ -1,5 +1,5 @@
 ## R2S 基于原生OpenWRT 的固件(AS IS, NO WARRANTY!!!)
-![R2S-OpenWrt-Without-Docker](https://github.com/QiuSimons/R2S-OpenWrt/workflows/R2S-OpenWrt-Without-Docker/badge.svg)
+[![NanoPi-R2S_Openwrt1907_Fat](https://github.com/02015678/R2S-OpenWrt/workflows/R2S-OpenWrt-Without-Docker/badge.svg)](https://github.com/02015678/R2S-OpenWrt/actions?query=workflow%3AR2S-OpenWrt-Without-Docker) 
 
 ### 请勿用于商业用途!!! 请勿用于商业用途!!! 请勿用于商业用途!!! 请勿用于商业用途!!! 请勿用于商业用途!!!
 
@@ -21,14 +21,14 @@ wget -O - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bion
 ```
 一键编译（测试编译环境是Ubuntu18.04）：
 ```shell
-git clone https://github.com/project-openwrt/R2S-OpenWrt.git&&cd R2S-OpenWrt&&bash onekeyr2s.sh
+git clone https://github.com/project-openwrt/R2S-OpenWrt.git && cd R2S-OpenWrt && bash onekeyr2s.sh
 ```
 ### 注意事项：
-0.OC至1.608GHz（未提升电压，原则上不会增加大量额外发热）
+0.OC至1.608GHz（未提升电压，原则上不会增加大量额外发热）。建议不要超过1.5GHz。
 
 1.登陆IP：192.168.1.1 密码：无
 
-2.OP内置升级可用
+2.OP内置sysupgrade升级可用
 
 3.遇到上不了网的，请自行排查自己的ipv6联通情况。（推荐关闭ipv6，默认已关闭ipv6的dns解析，手动可以在DHCP/DNS里的高级设置中调整）
 
@@ -53,7 +53,7 @@ LUCI版本：19.07（当日最新）
 
 3.插件包含：SSRP，PassWall，OpenClash，AdguardHome，BearDropper，微信推送，网易云解锁，SQM，SmartDNS，ChinaDNS，网络唤醒，DDNS，迅雷快鸟，UPNP，FullCone(防火墙中开启)，流量分载(防火墙中开启)，SFE流量分载(也就是SFE加速，防火墙中开启，且默认开启)，BBR（默认开启），irq优化，OLED屏幕支持，京东签到，Zerotier，FRPC，FRPS，无线打印，流量监控，过滤军刀，内存压缩
 
-4.核心频率1.608GHz（稳定与否取决于你设备体制，求稳可以在CPU性能调节优化里降低最大频率）
+4.核心频率1.512GHz（稳定与否取决于你设备体制，求稳可以在CPU性能调节优化里降低最大频率）
 
 ### 固件预览：
 <img src="https://cdn.jsdelivr.net/gh/project-openwrt/R2S-OpenWrt@master/PIC/app.png" width="1024" />
