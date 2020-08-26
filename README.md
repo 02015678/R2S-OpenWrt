@@ -25,7 +25,7 @@ wget -O - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bion
 git clone https://github.com/02015678/R2S-OpenWrt.git && cd R2S-OpenWrt && bash onekeyr2s.sh
 ```
 ### 注意事项：
-~~0.OC至1.608GHz（未提升电压，原则上不会增加大量额外发热）。建议不要超过1.5GHz。~~
+0.OC至1.5GHz（未提升电压，原则上不会增加大量额外发热）。
 
 1.登陆IP：192.168.1.1 密码：无
 
@@ -66,7 +66,7 @@ LUCI版本：19.07（当日最新）
 
 3.插件包含：SSRP，PassWall，OpenClash，AdguardHome，BearDropper，微信推送，网易云解锁，SQM，SmartDNS，ChinaDNS，网络唤醒，DDNS，迅雷快鸟，UPNP，FullCone(防火墙中的选项，默认开启)，流量分载(防火墙中的选项，默认未开启)，SFE流量分载(也就是SFE加速，防火墙中的选项，默认开启)，BBR（默认开启），irq优化，OLED屏幕支持，京东签到，Zerotier，FRPC/FRPS，无线USB打印，流量监控
 
-~~4.核心频率1.608GHz。建议不要超过1.5GHz。~~
+4.核心频率1.5GHz。
 
 ### 固件预览：
 <img src="https://cdn.jsdelivr.net/gh/02015678/R2S-OpenWrt@master/PIC/app.png" width="1024" />
