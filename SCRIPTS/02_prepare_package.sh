@@ -36,6 +36,18 @@ patch -p1 < ../PATCH/new/main/Support-hardware-random-number-generator-for-RK332
 #回滚FW3
 rm -rf ./package/network/config/firewall
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/config/firewall package/network/config/firewall
+=======
+#Kernel
+wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3277.patch | patch -p1
+
+#HW-RNG
+patch --strip=1 --binary --ignore-whitespace < ../PATCH/new/main/Support-hardware-random-number-generator-for-RK3328.patch
+
+#Crypto（test
+#wget -O- https://github.com/AmadeusGhost/lede/commit/3e668936669080ca6f3fcea5534b94d00103291a.patch | patch -p1
+
+##准备工作
+>>>>>>> 8728641... “Reinitialize”
 #使用19.07的feed源
 rm -f ./feeds.conf.default
 wget https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/feeds.conf.default
