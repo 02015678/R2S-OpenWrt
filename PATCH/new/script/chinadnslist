@@ -10,18 +10,4 @@ find /tmp/chinadns-ng/ -size -20k -exec rm {} \;
 chmod -R  755  /tmp/chinadns-ng
 \cp -rf /tmp/chinadns-ng/** /etc/chinadns-ng
 wget -P /tmp "https://cdn.jsdelivr.net/gh/QiuSimons/Others/blacklist-ip.conf" && cat /tmp/blacklist-ip.conf >> "/etc/smartdns/blacklist-ip.conf" && cat "/etc/smartdns/blacklist-ip.conf" | sort | uniq > /tmp/tmp_blacklist-ip.conf && cat /tmp/tmp_blacklist-ip.conf > "/etc/smartdns/blacklist-ip.conf"
-
-\cp -f /etc/chinadns-ng/chnroute.txt /tmp/chinadns-ng/chnroute.ipset
-\cp -f /etc/chinadns-ng/chnroute6.txt /tmp/chinadns-ng/chnroute6.ipset
-sed -i 's/^/add chnroute /' /tmp/chinadns-ng/chnroute.ipset
-sed -i '1i create chnroute hash:net family inet' /tmp/chinadns-ng/chnroute.ipset
-sed -i 's/^/add chnroute6 /' /tmp/chinadns-ng/chnroute6.ipset
-sed -i '1i create chnroute6 hash:net family inet6' /tmp/chinadns-ng/chnroute6.ipset
-
-# Update ipset for chinadns-ng on-the-fly, no need to restart chinadns-ng
-ipset -F chnroute
-ipset -F chnroute6
-ipset -R -exist < /tmp/chinadns-ng/chnroute.ipset
-ipset -R -exist < /tmp/chinadns-ng/chnroute6.ipset
-
 exit 0
