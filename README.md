@@ -16,8 +16,6 @@ https://github.com/project-openwrt/R2S-OpenWrt/actions
 安装依赖：
 ```shell
 sudo -E apt-get install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libreadline-dev libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint ccache curl wget vim nano python python3 python-pip python3-pip python-ply python3-ply haveged lrzsz device-tree-compiler scons
-```
-```shell
 wget -O - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | bash
 ```
 编译命令（测试编译环境是Ubuntu18.04）：
@@ -35,7 +33,7 @@ bash onekeyr2s.sh
 2.OP内置sysupgrade升级可用
 
 3.上不了网的，请自行排查自己的ipv6联通情况。注意需要在防火墙自定义规则新增以下规则并重启防火墙：
-```
+```conf
 # 定义 IPv6 WAN 接口名（Linux）
 iface_linux=pppoe-wan
 # 建立 IPv6 NAT
