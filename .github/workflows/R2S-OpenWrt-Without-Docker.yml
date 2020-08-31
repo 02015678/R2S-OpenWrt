@@ -1,8 +1,11 @@
 name: R2S-OpenWrt-Without-Docker
 
 on:
+  push:
+    paths:
+      - 'README.md'  
   schedule:
-    - cron: 30 5 * * *
+    - cron: 0 0 * * 1
   watch:
     types: started
 
