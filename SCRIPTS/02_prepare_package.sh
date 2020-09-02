@@ -26,6 +26,12 @@ CONFIG_PREEMPTION=y
 ' >> ./target/linux/rockchip/config-default
 }
 
+#RT Kernel
+cp -f ../PATCH/new/main/999-patch-5.4.61-rt37.patch ./target/linux/generic/hack-5.4/999-patch-5.4.61-rt37.patch
+echo '
+CONFIG_PREEMPT_RT_FULL=y
+' >> ./target/linux/rockchip/armv8/config-5.4
+
 #HW-RNG
 patch -p1 < ../PATCH/new/main/Support-hardware-random-number-generator-for-RK3328.patch
 
