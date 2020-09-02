@@ -11,7 +11,7 @@ patch -p1 < ../PATCH/new/main/Support-hardware-random-number-generator-for-RK332
 #wget -O- https://github.com/AmadeusGhost/lede/commit/3e668936669080ca6f3fcea5534b94d00103291a.patch | patch -p1
 
 ##准备工作
-#实验性回滚FW3
+#回滚FW3
 rm -rf ./package/network/config/firewall
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/config/firewall package/network/config/firewall
 #使用19.07的feed源
@@ -240,6 +240,8 @@ svn co https://github.com/openwrt/packages/trunk/utils/runc package/utils/runc
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/utils/fuse package/utils/fuse
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/services/samba36 package/network/services/samba36
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/libs/libconfig package/libs/libconfig
+svn co https://github.com/openwrt/packages/trunk/libs/nghttp2 package/libs/nghttp2
+svn co https://github.com/openwrt/packages/trunk/libs/libcap-ng package/libs/libcap-ng
 rm -rf ./feeds/packages/utils/collectd
 svn co https://github.com/openwrt/packages/trunk/utils/collectd feeds/packages/utils/collectd
 #FullCone模块
