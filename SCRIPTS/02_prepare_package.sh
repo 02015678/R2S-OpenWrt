@@ -26,7 +26,7 @@ CONFIG_PREEMPTION=y
 ' >> ./target/linux/rockchip/config-default
 }
 
-notExce(){ 
+notExce(){
 #RT Kernel
 cp -f ../PATCH/new/main/999-patch-5.4.61-rt37.patch ./target/linux/generic/hack-5.4/999-patch-5.4.61-rt37.patch
 sed -i '/PREEMPT/d' ./target/linux/rockchip/armv8/config-5.4
@@ -50,19 +50,6 @@ patch -p1 < ../PATCH/new/main/Support-hardware-random-number-generator-for-RK332
 ##准备工作
 #回滚FW3
 rm -rf ./package/network/config/firewall
-svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/config/firewall package/network/config/firewall
-=======
-#Kernel
-wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3277.patch | patch -p1
-
-#HW-RNG
-patch -p1 < ../PATCH/new/main/Support-hardware-random-number-generator-for-RK3328.patch
-
-#Crypto（test
-#wget -O- https://github.com/AmadeusGhost/lede/commit/3e668936669080ca6f3fcea5534b94d00103291a.patch | patch -p1
-
-##准备工作
->>>>>>> 8728641... “Reinitialize”
 #使用19.07的feed源
 rm -f ./feeds.conf.default
 wget https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/feeds.conf.default
