@@ -41,8 +41,6 @@ ip6table
 
 6.sys灯引导时闪烁，启动后常亮，是上游的设定，有疑问请联系OP官方社区
 
-7.相比[QiuSimons/R2S-OpenWrt](https://github.com/QiuSimons/R2S-OpenWrt)，新增了TTYD, FileTransfer，以及统计(显示历史温度、CPU、系统负载，就像你在很多VPS控制面板上看到的那样)。但为了固件体积尽量小，并未像[songchenwen/nanopi-r2s](https://github.com/songchenwen/nanopi-r2s)安装netdata那样酷炫的监控面板。
-
 ### 版本信息：
 其他模块版本：SNAPSHOT（当日最新）
 
