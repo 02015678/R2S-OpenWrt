@@ -1,10 +1,10 @@
 ## R2S 基于原生OpenWRT 的固件(AS IS, NO WARRANTY!!!)
-[![NanoPi-R2S_Openwrt1907_Fat](https://github.com/02015678/R2S-OpenWrt/workflows/R2S-OpenWrt-Without-Docker/badge.svg)](https://github.com/02015678/R2S-OpenWrt/actions?query=workflow%3AR2S-OpenWrt-Without-Docker) 
+[![R2S-OpenWrt](https://github.com/02015678/R2S-OpenWrt/workflows/R2S-OpenWrt-Without-Docker/badge.svg)](https://github.com/02015678/R2S-OpenWrt/actions?query=workflow%3AR2S-OpenWrt-Without-Docker) 
 
 ### 下载地址：
 https://github.com/02015678/R2S-OpenWrt/releases
 
-### 追新党可以在上游找到更多选项固件 (需要登录)：
+### 追新党请移步 (需要登录)：
 https://github.com/project-openwrt/R2S-OpenWrt/actions
 
 ### 本地编译指南：
@@ -21,7 +21,7 @@ cd R2S-OpenWrt
 bash onekeyr2s.sh
 ```
 ### 注意事项：
-0.OC至1.5GHz（未提升电压，原则上不会增加大量额外发热）。
+0.OC至1.5GHz（未提升电压）。
 
 1.登陆IP：192.168.1.1 密码：无
 
@@ -53,7 +53,7 @@ LUCI版本：19.07（当日最新）
 
 2.内置三款主题(默认是bootstrap，想好看和手机友好的可以选择argon)
 
-3.插件包含：VSSR，PassWall，OpenClash，AdguardHome，BearDropper，微信推送，网易云解锁，SQM，SmartDNS，ChinaDNS，网络唤醒，DDNS，UPNP，FullCone(防火墙中的选项，默认开启)，流量分载(防火墙中的选项，默认未开启)，SFE流量分载(也就是SFE加速，防火墙中的选项，默认开启)，BBR（默认开启），irq优化，OLED屏幕支持，京东签到，Zerotier，FRPC/FRPS，USB打印，流量监控，TTYD, FileTransfer，以及统计
+3.插件包含：VSSR (替代SSRP)，PassWall，AdguardHome，SmartDNS，ChinaDNS，BearDropper，微信推送，网易云解锁，SQM，网络唤醒，DDNS，UPNP，FullCone(防火墙中的选项，默认开启)，流量分载(防火墙中的选项，默认未开启)，SFE流量分载(也就是SFE加速，防火墙中的选项，默认开启)，BBR（默认开启），irq优化，OLED屏幕支持，京东签到，Zerotier内网穿透，FRP内网穿透，NPS内网穿透，USB打印, FileTransfer，流量监控，以及统计模块
 
 4.核心频率1.5GHz。
 
