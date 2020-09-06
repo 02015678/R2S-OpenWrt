@@ -27,12 +27,14 @@ bash onekeyr2s.sh
 
 2.OP内置sysupgrade升级可用
 
-3.上不了网的，请自行排查自己的ipv6联通情况。注意需要在防火墙自定义规则新增以下规则并重启防火墙：
-```conf
-# 定义 IPv6 WAN 接口名（Linux）
-iface_linux=pppoe-wan
-# 建立 IPv6 NAT
-ip6table
+3.上不了网的，请自行排查自己的ipv6联通情况。注意需要在防火墙自定义规则新增规则并重启防火墙。  
+如果不知道怎么配置IPv6建议禁用IPv6。
+```
+# OpenWrt LuCI Web Interface
+ip6tables -A INPUT -p tcp --dport 80 -j ACCEPT
+ip6tables -A INPUT -p tcp --dport 443 -j ACCEPT
+ip6tables -A FORWARD -p tcp --dport 80 -j ACCEPT
+ip6tables -A FORWARD -p tcp --dport 443 -j ACCEPT
 ```
 
 4.刷写或升级后遇到任何问题，可以尝试ssh进路由器，输入fuck，回车后等待重启，或可解决
