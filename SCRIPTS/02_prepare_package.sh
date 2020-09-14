@@ -4,6 +4,7 @@ clear
 #Kernel
 #cp -f ../PATCH/new/main/xanmod_5.4.patch ./target/linux/generic/hack-5.4/000-xanmod_5.4.patch
 wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3277.patch | patch -p1
+wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3178.patch | patch -p1
 #wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3389.patch | patch -p1
 
 notExce(){ 
@@ -225,6 +226,9 @@ svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-go pack
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/brook package/new/brook
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-plus package/new/trojan-plus
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/ssocks package/new/ssocks
+#luci-app-cpulimit
+svn co https://github.com/project-openwrt/openwrt/branches/master/package/ntlf9t/luci-app-cpulimit package/lean/luci-app-cpulimit
+svn co https://github.com/project-openwrt/openwrt/branches/master/package/ntlf9t/cpulimit package/lean/cpulimit
 #订阅转换
 svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ctcgfw/subconverter package/new/subconverter
 svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ctcgfw/jpcre2 package/new/jpcre2
