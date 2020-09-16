@@ -175,6 +175,7 @@ git clone -b master --single-branch https://github.com/project-openwrt/luci-app-
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/lean/luci-app-autoreboot
 #argon主题
 git clone -b master --single-branch https://github.com/jerrykuku/luci-theme-argon package/new/luci-theme-argon
+git clone -b master --single-branch https://github.com/jerrykuku/luci-app-argon-config package/new/luci-app-argon-config
 #edge主题
 git clone -b master --single-branch https://github.com/garypang13/luci-theme-edge package/new/luci-theme-edge
 #AdGuard
@@ -227,10 +228,8 @@ svn co https://github.com/xiaorouji/openwrt-package/trunk/package/brook package/
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-plus package/new/trojan-plus
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/ssocks package/new/ssocks
 #luci-app-cpulimit
-svn co https://github.com/oceancn/luci-nwan/branches/master/luci/applications/luci-cpulimit package/lean/luci-app-cpulimit
-#svn co https://github.com/project-openwrt/openwrt/branches/master/package/ntlf9t/luci-app-cpulimit package/lean/luci-app-cpulimit
+svn co https://github.com/QiuSimons/Others/trunk/luci-app-cpulimit package/lean/luci-app-cpulimit
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/ntlf9t/cpulimit package/lean/cpulimit
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/ntlf9t/cpulimit-ng  package/lean/cpulimit-ng
 #订阅转换
 svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ctcgfw/subconverter package/new/subconverter
 svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ctcgfw/jpcre2 package/new/jpcre2
