@@ -40,7 +40,7 @@ patch -p1 < ../PATCH/new/main/0001-tools-add-upx-ucl-support.patch
 #remove annoying snapshot tag
 sed -i 's,SNAPSHOT,,g' include/version.mk
 sed -i 's,snapshots,,g' package/base-files/image-config.in
-#使用O3级别的优化
+#使用O2级别的优化
 sed -i 's/Os/O2/g' include/target.mk
 sed -i 's/O2/O2/g' ./rules.mk
 #更新feed
@@ -48,7 +48,7 @@ sed -i 's/O2/O2/g' ./rules.mk
 #irqbalance
 #sed -i 's/0/1/g' feeds/packages/utils/irqbalance/files/irqbalance.config
 #RNGD
-sed -i 's/-f/-f -i/g' feeds/packages/utils/rng-tools/files/rngd.init
+#sed -i 's/-f/-f -i/g' feeds/packages/utils/rng-tools/files/rngd.init
 
 ##必要的patch
 #等待上游修复后使用
