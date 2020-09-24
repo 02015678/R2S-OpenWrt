@@ -148,6 +148,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-filetran
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-fs package/lean/luci-lib-fs
 #访问控制
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accesscontrol package/lean/luci-app-accesscontrol
+svn co https://github.com/QiuSimons/Others/trunk/luci-app-control-weburl package/new/luci-app-control-weburl
 #AutoCore
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/lean/autocore
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/coremark package/lean/coremark
@@ -201,6 +202,7 @@ rm -rf ./feeds/packages/net/shadowsocks-libev
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shadowsocksr-libev package/lean/shadowsocksr-libev
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/pdnsd-alt package/lean/pdnsd
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray package/lean/v2ray
+#svn co https://github.com/xiaorouji/openwrt-package/trunk/package/v2ray package/lean/v2ray
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/kcptun package/lean/kcptun
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray-plugin package/lean/v2ray-plugin
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
