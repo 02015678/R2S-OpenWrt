@@ -3,7 +3,6 @@ clear
 
 #Kernel
 #cp -f ../PATCH/new/main/xanmod_5.4.patch ./target/linux/generic/hack-5.4/000-xanmod_5.4.patch
-wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3277.patch | patch -p1
 wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3178.patch | patch -p1
 #wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3389.patch | patch -p1
 
@@ -297,6 +296,9 @@ popd
 #UPNP（回滚以解决某些沙雕设备的沙雕问题
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
+#KMS
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd package/lean/luci-app-vlmcsd
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd package/lean/vlmcsd
 #frp
 rm -f ./feeds/luci/applications/luci-app-frps
 rm -f ./feeds/luci/applications/luci-app-frpc
