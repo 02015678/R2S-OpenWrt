@@ -1,0 +1,27 @@
+From 407a9b0c4c8a5dbf3c400fa20417d050741a6da9 Mon Sep 17 00:00:00 2001
+From: David Bauer <mail@david-bauer.net>
+Date: Sat, 3 Oct 2020 13:50:49 +0200
+Subject: [PATCH] rockchip: enable Realtek PHY support
+
+The NanoPi R2S features a Realtek Gigabit Ethernet PHY. Enable the
+Realtek specific PHY driver to correctly configure internal delays.
+
+Signed-off-by: David Bauer <mail@david-bauer.net>
+---
+ target/linux/rockchip/armv8/config-5.4 | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/target/linux/rockchip/armv8/config-5.4 b/target/linux/rockchip/armv8/config-5.4
+index 585f701ccd..692712c133 100644
+--- a/target/linux/rockchip/armv8/config-5.4
++++ b/target/linux/rockchip/armv8/config-5.4
+@@ -365,6 +365,7 @@ CONFIG_RCU_CPU_STALL_TIMEOUT=21
+ # CONFIG_RCU_EXPERT is not set
+ CONFIG_RCU_TRACE=y
+ # CONFIG_READ_ONLY_THP_FOR_FS is not set
++CONFIG_REALTEK_PHY=y
+ CONFIG_REGMAP=y
+ CONFIG_REGMAP_I2C=y
+ CONFIG_REGMAP_IRQ=y
+-- 
+2.20.1
