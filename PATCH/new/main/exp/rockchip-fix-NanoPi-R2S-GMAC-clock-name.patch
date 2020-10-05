@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 From 9bceb2001d6db5f1fd521c6650a86ef185e0ef53 Mon Sep 17 00:00:00 2001
+=======
+From 9b6ee5a11b35c9e716d6a34856eaa524f0f066de Mon Sep 17 00:00:00 2001
+>>>>>>> c5636f9... Add files via upload
 From: David Bauer <mail@david-bauer.net>
 Date: Mon, 5 Oct 2020 00:01:12 +0200
 Subject: [PATCH] rockchip: fix NanoPi R2S GMAC clock name
