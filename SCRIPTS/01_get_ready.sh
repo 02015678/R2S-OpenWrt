@@ -1,5 +1,5 @@
 #!/bin/bash
-notExce(){ 
+notExce(){
 git clone -b master https://git.openwrt.org/openwrt/staging/blocktrron.git openwrt
 cd openwrt
 git config --local user.email "action@github.com" && git config --local user.name "GitHub Action"

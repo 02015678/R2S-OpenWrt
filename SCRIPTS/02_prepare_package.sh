@@ -5,8 +5,8 @@ clear
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/r8152 package/new/r8152
 sed -i '/rtl8152/d' ./target/linux/rockchip/image/armv8.mk
 
-notExce(){ 
-#blocktrron.git 
+notExce(){
+#blocktrron.git
 patch -p1 < ../PATCH/new/main/exp/uboot-rockchip-update-to-v2020.10.patch
 patch -p1 < ../PATCH/new/main/exp/rockchip-fix-NanoPi-R2S-GMAC-clock-name.patch
 
@@ -19,7 +19,7 @@ wget -q https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3580.p
 patch -p1 < ./3580.patch
 }
 
-notExce(){ 
+notExce(){
 #RT Kernel
 cp -f ../PATCH/new/main/999-patch-5.4.61-rt37.patch ./target/linux/generic/hack-5.4/999-patch-5.4.61-rt37.patch
 sed -i '/PREEMPT/d' ./target/linux/rockchip/armv8/config-5.4
@@ -75,7 +75,7 @@ patch -p1 < ../PATCH/new/package/luci-add-filter-aaaa-option.patch
 cp -f ../PATCH/new/package/900-add-filter-aaaa-option.patch ./package/network/services/dnsmasq/patches/900-add-filter-aaaa-option.patch
 rm -rf ./package/base-files/files/etc/init.d/boot
 wget -P package/base-files/files/etc/init.d https://raw.githubusercontent.com/project-openwrt/openwrt/openwrt-18.06-k5.4/package/base-files/files/etc/init.d/boot
-#Patch FireWall 以增添fullcone功能 
+#Patch FireWall 以增添fullcone功能
 mkdir package/network/config/firewall/patches
 wget -P package/network/config/firewall/patches/ https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/fullconenat.patch
 # Patch LuCI 以增添fullcone开关
