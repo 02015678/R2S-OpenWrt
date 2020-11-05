@@ -1,23 +1,15 @@
 #!/bin/bash
 clear
 
-#wget -O- https://github.com/project-openwrt/openwrt/commit/d8df86130d172b3ce262d2744e2ddd2a6eed5f50.patch | patch -p1
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/ctcgfw/r8152 package/new/r8152
-sed -i '/rtl8152/d' ./target/linux/rockchip/image/armv8.mk
-
-notExce(){
 #blocktrron.git
-patch -p1 < ../PATCH/new/main/exp/uboot-rockchip-update-to-v2020.10.patch
-patch -p1 < ../PATCH/new/main/exp/rockchip-fix-NanoPi-R2S-GMAC-clock-name.patch
+#patch -p1 < ../PATCH/new/main/exp/uboot-rockchip-update-to-v2020.10.patch
+#patch -p1 < ../PATCH/new/main/exp/rockchip-fix-NanoPi-R2S-GMAC-clock-name.patch
 
 #update r8152 driver
-wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3178.patch | patch -p1
+#wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3178.patch | patch -p1
 
 #Kernel
-cp -f ../PATCH/new/main/xanmod_5.4.patch ./target/linux/generic/hack-5.4/000-xanmod_5.4.patch
-wget -q https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3580.patch
-patch -p1 < ./3580.patch
-}
+#cp -f ../PATCH/new/main/xanmod_5.4.patch ./target/linux/generic/hack-5.4/000-xanmod_5.4.patch
 
 notExce(){
 #RT Kernel
@@ -37,6 +29,9 @@ CONFIG_PREEMPTION=y
 #HW-RNG
 patch -p1 < ../PATCH/new/main/Support-hardware-random-number-generator-for-RK3328.patch
 
+#Crypto（test
+#wget -O- https://github.com/AmadeusGhost/lede/commit/3e668936669080ca6f3fcea5534b94d00103291a.patch | patch -p1
+
 ##准备工作
 #回滚FW3
 rm -rf ./package/network/config/firewall
@@ -54,17 +49,21 @@ sed -i 's/Os/O2/g' include/target.mk
 sed -i 's/O2/O2/g' ./rules.mk
 #更新feed
 ./scripts/feeds update -a && ./scripts/feeds install -a
+#irqbalance
+#sed -i 's/0/1/g' feeds/packages/utils/irqbalance/files/irqbalance.config
 #RNGD
 sed -i 's/-f/-f -i/g' feeds/packages/utils/rng-tools/files/rngd.init
 #rc.common
 rm -rf ./package/base-files/files/etc/rc.common
-cp -f ../PATCH/duplicate/rc.common ./package/base-files/files/etc/rc.common
-#irqbalance
-#sed -i 's/0/1/g' feeds/packages/utils/irqbalance/files/irqbalance.config
+wget -P package/base-files/files/etc https://raw.githubusercontent.com/QiuSimons/Others/master/rc.common
 
 ##必要的patch
+#fix sd
+#cp -f ../PATCH/new/main/101-rockchip-rk3328-nanopi-r2s-improve-boot-failed.patch ./package/boot/uboot-rockchip/patches/101-rockchip-rk3328-nanopi-r2s-improve-boot-failed.patch
 #patch i2c0
 cp -f ../PATCH/new/main/998-rockchip-enable-i2c0-on-NanoPi-R2S.patch ./target/linux/rockchip/patches-5.4/998-rockchip-enable-i2c0-on-NanoPi-R2S.patch
+#patch rk-crypto
+#patch -p1 < ../PATCH/new/main/kernel_crypto-add-rk3328-crypto-support.patch
 #luci network
 patch -p1 < ../PATCH/new/main/luci_network-add-packet-steering.patch
 #patch jsonc
@@ -84,21 +83,24 @@ wget -O- https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/luci.patch 
 popd
 # Patch Kernel 以解决fullcone冲突
 pushd target/linux/generic/hack-5.4
+#wget https://raw.githubusercontent.com/project-openwrt/openwrt/18.06-kernel5.4/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch
 wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch
 popd
 #Patch FireWall 以增添SFE
 patch -p1 < ../PATCH/new/package/luci-app-firewall_add_sfe_switch.patch
 # SFE内核补丁
 pushd target/linux/generic/hack-5.4
-wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/generic/hack-5.4/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
+#wget https://raw.githubusercontent.com/MeIsReallyBa/Openwrt-sfe-flowoffload-linux-5.4/master/999-shortcut-fe-support.patch
+#wget https://raw.githubusercontent.com/Lienol/openwrt/dev-master/target/linux/generic/hack-5.4/999-01-shortcut-fe-support.patch
+wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/generic/hack-5.4/999-shortcut-fe-support.patch
 popd
 #OC
 cp -f ../PATCH/new/main/999-unlock-1608mhz-rk3328.patch ./target/linux/rockchip/patches-5.4/999-unlock-1608mhz-rk3328.patch
 #IRQ
+#rm -rf ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
+#cp -f ../PATCH/new/script/40-net-smp-affinity ./target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
 sed -i '/;;/i\set_interface_core 8 "ff160000" "ff160000.i2c"' target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
 sed -i '/;;/i\set_interface_core 1 "ff150000" "ff150000.i2c"' target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
-#disabed rk3328 ethernet tcp/udp offloading tx/rx
-sed -i '/;;/i\ethtool -K eth0 rx off tx off && logger -t disable-offloading "disabed rk3328 ethernet tcp/udp offloading tx/rx"' target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
 #SWAP LAN WAN
 sed -i 's,"eth1" "eth0","eth0" "eth1",g' target/linux/rockchip/armv8/base-files/etc/board.d/02_network
 sed -i "s,'eth1' 'eth0','eth0' 'eth1',g" target/linux/rockchip/armv8/base-files/etc/board.d/02_network
@@ -142,6 +144,9 @@ svn co https://github.com/openwrt/packages/trunk/devel/gcc feeds/packages/devel/
 #更换Golang版本
 rm -rf ./feeds/packages/lang/golang
 svn co https://github.com/openwrt/packages/trunk/lang/golang feeds/packages/lang/golang
+#rm -rf ./feeds/packages/lang/golang/.svn
+#rm -rf ./feeds/packages/lang/golang/golang
+#svn co https://github.com/project-openwrt/packages/trunk/lang/golang/golang feeds/packages/lang/golang/golang
 #beardropper
 git clone https://github.com/NateLol/luci-app-beardropper package/luci-app-beardropper
 sed -i 's/"luci.fs"/"luci.sys".net/g' package/luci-app-beardropper/luasrc/model/cbi/beardropper/setting.lua
@@ -159,10 +164,13 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-p
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby package/lean/adbyby
 #访问控制
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accesscontrol package/lean/luci-app-accesscontrol
-cp -rf ../PATCH/duplicate/luci-app-control-weburl ./package/new/luci-app-control-weburl
+svn co https://github.com/QiuSimons/Others/trunk/luci-app-control-weburl package/new/luci-app-control-weburl
 #AutoCore
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/lean/autocore
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/coremark package/lean/coremark
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/coremark package/lean/coremark
+#mkdir package/lean/coremark/patches
+#wget -P package/lean/coremark/patches/ https://raw.githubusercontent.com/QiuSimons/Others/master/coremark.patch
 #迅雷快鸟
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-xlnetacc package/lean/luci-app-xlnetacc
 #DDNS
@@ -178,6 +186,8 @@ svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/p
 git clone -b master --single-branch https://github.com/NateLol/luci-app-oled package/new/luci-app-oled
 #网易云解锁
 git clone https://github.com/project-openwrt/luci-app-unblockneteasemusic package/new/UnblockNeteaseMusic
+#pushd package/new/UnblockNeteaseMusic
+#git checkout 3e669ff
 #popd
 #定时重启
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/lean/luci-app-autoreboot
@@ -188,8 +198,9 @@ git clone -b master --single-branch https://github.com/jerrykuku/luci-app-argon-
 git clone -b master --single-branch https://github.com/garypang13/luci-theme-edge package/new/luci-theme-edge
 #AdGuard
 cp -rf ../openwrt-lienol/package/diy/luci-app-adguardhome ./package/new/luci-app-adguardhome
-cp -rf ../openwrt-lienol/package/diy/adguardhome ./package/new/adguardhome
-#svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ntlf9t/AdGuardHome package/new/AdGuardHome
+svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ntlf9t/AdGuardHome package/new/AdGuardHome
+#cp -rf ../openwrt-lienol/package/diy/adguardhome ./package/new/AdGuardHome
+#git clone -b master --single-branch https://github.com/rufengsuixing/luci-app-adguardhome package/new/luci-app-adguardhome
 #ChinaDNS
 git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
 git clone https://github.com/pexcn/openwrt-chinadns-ng.git package/new/chinadns-ng
@@ -198,12 +209,17 @@ git clone -b master --single-branch https://github.com/jerrykuku/luci-app-vssr p
 git clone -b master --single-branch https://github.com/jerrykuku/lua-maxminddb package/lean/lua-maxminddb
 #SSRP
 svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
+rm -rf ./package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr/ssrurl.htm
+wget -P package/lean/luci-app-ssr-plus/luasrc/view/shadowsocksr https://raw.githubusercontent.com/QiuSimons/Others/master/luci-app-ssr-plus/luasrc/view/shadowsocksr/ssrurl.htm
+#rm -rf ./package/lean/luci-app-ssr-plus/root/etc/init.d/shadowsocksr
+#wget -P package/lean/luci-app-ssr-plus/root/etc/init.d https://raw.githubusercontent.com/QiuSimons/Others/master/luci-app-ssr-plus-177-1/root/etc/init.d/shadowsocksr
 #SSRP依赖
 rm -rf ./feeds/packages/net/kcptun
 rm -rf ./feeds/packages/net/shadowsocks-libev
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shadowsocksr-libev package/lean/shadowsocksr-libev
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/pdnsd-alt package/lean/pdnsd
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray package/lean/v2ray
+#svn co https://github.com/xiaorouji/openwrt-package/trunk/package/v2ray package/lean/v2ray
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/kcptun package/lean/kcptun
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray-plugin package/lean/v2ray-plugin
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/srelay package/lean/srelay
@@ -211,7 +227,9 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/microsocks packag
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/dns2socks package/lean/dns2socks
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 package/lean/redsocks2
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/proxychains-ng package/lean/proxychains-ng
+#git clone -b master --single-branch https://github.com/pexcn/openwrt-ipt2socks package/lean/ipt2socks
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ipt2socks package/lean/ipt2socks
+#git clone -b master --single-branch https://github.com/aa65535/openwrt-simple-obfs package/lean/simple-obfs
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/simple-obfs package/lean/simple-obfs
 svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/lean/shadowsocks-libev
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/trojan package/lean/trojan
@@ -229,7 +247,7 @@ svn co https://github.com/xiaorouji/openwrt-package/trunk/package/brook package/
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-plus package/new/trojan-plus
 svn co https://github.com/xiaorouji/openwrt-package/trunk/package/ssocks package/new/ssocks
 #luci-app-cpulimit
-cp -rf ../PATCH/duplicate/luci-app-cpulimit ./package/lean/luci-app-cpulimit
+svn co https://github.com/QiuSimons/Others/trunk/luci-app-cpulimit package/lean/luci-app-cpulimit
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/ntlf9t/cpulimit package/lean/cpulimit
 #订阅转换
 svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ctcgfw/subconverter package/new/subconverter
@@ -243,14 +261,23 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-prin
 #流量监视
 git clone -b master --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
 git clone -b master --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-wrtbwmon package/lean/luci-app-wrtbwmon
 #流量监管
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata package/lean/luci-app-netdata
 #OpenClash
+#svn co https://github.com/vernesong/OpenClash/branches/master/luci-app-openclash package/new/luci-app-openclash
 git clone -b master --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
 #SeverChan
 git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/utils/iputils package/network/utils/iputils
 #SmartDNS
+#svn co https://github.com/pymumu/smartdns/trunk/package/openwrt package/new/smartdns
+#git clone -b lede --single-branch https://github.com/pymumu/luci-app-smartdns package/new/luci-app-smartdns/
+#git clone https://github.com/xsmzhzy/openwrt-smartdns package/new/smartdns
+#svn co https://github.com/openwrt/luci/trunk/applications/luci-app-smartdns package/new/luci-app-smartdns
+#sed -i 's,include ../..,include $(TOPDIR)/feeds/luci,g' ./package/new/luci-app-smartdns/Makefile
+#rm -rf ./package/new/luci-app-smartdns/htdocs/luci-static/resources/view/smartdns/smartdns.js
+#wget -P package/new/luci-app-smartdns/htdocs/luci-static/resources/view/smartdns https://github.com/pymumu/smartdns/blob/master/package/luci/files/root/www/luci-static/resources/view/smartdns/smartdns.js
 cp -rf ../packages-lienol/net/smartdns ./package/new/smartdns
 cp -rf ../luci-lienol/applications/luci-app-smartdns ./package/new/luci-app-smartdns
 sed -i 's,include ../..,include $(TOPDIR)/feeds/luci,g' ./package/new/luci-app-smartdns/Makefile
@@ -272,10 +299,6 @@ svn co https://github.com/openwrt/packages/trunk/utils/tini feeds/packages/utils
 ln -sf ../../../feeds/packages/utils/tini ./package/feeds/packages/tini
 svn co https://github.com/openwrt/packages/trunk/utils/runc feeds/packages/utils/runc
 ln -sf ../../../feeds/packages/utils/runc ./package/feeds/packages/runc
-svn co https://github.com/openwrt/packages/trunk/utils/yq feeds/packages/utils/yq
-ln -sf ../../../feeds/packages/utils/yq ./package/feeds/packages/yq
-rm -rf ./feeds/packages/utils/lvm2
-svn co https://github.com/openwrt/packages/trunk/utils/lvm2 feeds/packages/utils/lvm2
 #补全部分依赖（实际上并不会用到
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/utils/fuse package/utils/fuse
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/services/samba36 package/network/services/samba36
@@ -288,12 +311,12 @@ rm -rf ./feeds/packages/utils/collectd
 svn co https://github.com/openwrt/packages/trunk/utils/collectd feeds/packages/utils/collectd
 #FullCone模块
 cp -rf ../openwrt-lienol/package/network/fullconenat ./package/network/fullconenat
+#git clone -b master --single-branch https://github.com/QiuSimons/openwrt-fullconenat package/fullconenat
 #翻译及部分功能优化
-cp -rf ../PATCH/duplicate/addition-trans-zh-master ./package/lean/lean-translate
+git clone -b master --single-branch https://github.com/QiuSimons/addition-trans-zh package/lean/lean-translate
 #SFE
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/new/shortcut-fe
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/fast-classifier package/new/fast-classifier
-cp -f ../PATCH/duplicate/shortcut-fe ./package/base-files/files/etc/init.d
 #IPSEC
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ipsec-vpnd package/lean/luci-app-ipsec-vpnd
 #Zerotier
@@ -303,6 +326,9 @@ pushd package/lean/luci-app-zerotier
 bash move_2_services.sh
 popd
 rm -rf ./feeds/packages/net/zerotier/files/etc/init.d/zerotier
+#回滚zstd
+#rm -rf ./feeds/packages/utils/zstd
+#svn co https://github.com/QiuSimons/Others/trunk/zstd feeds/packages/utils/zstd
 #UPNP（回滚以解决某些沙雕设备的沙雕问题
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
@@ -346,6 +372,9 @@ CONFIG_CRYPTO_SIMD=y
 
 #let trojan prefer chacha20(vssr,passwall,ssrp
 patch -p1 < ../PATCH/new/main/chacha.patch
+
+#disable-rk3328-eth-offloading
+#wget -P target/linux/rockchip/armv8/base-files/etc/hotplug.d/iface https://raw.githubusercontent.com/friendlyarm/friendlywrt/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/hotplug.d/iface/12-disable-rk3328-eth-offloading
 
 ##最后的收尾工作
 #Lets Fuck
