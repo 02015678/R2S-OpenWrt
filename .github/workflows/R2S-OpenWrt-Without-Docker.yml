@@ -1,8 +1,11 @@
 name: R2S-OpenWrt-Without-Docker
 
 on:
+  push:
+    paths:
+      - 'SEED/config_no_docker.seed'  
   schedule:
-    - cron: 0 2 * * 6
+    - cron: 0 0 * * 6
   watch:
     types: started
 
