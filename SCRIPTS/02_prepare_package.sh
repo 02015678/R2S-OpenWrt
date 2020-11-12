@@ -3,8 +3,8 @@ clear
 
 notExce(){
 #blocktrron.git
-patch -p1 < ../PATCH/new/main/exp/uboot-rockchip-update-to-v2020.10.patch
-patch -p1 < ../PATCH/new/main/exp/rockchip-fix-NanoPi-R2S-GMAC-clock-name.patch
+#patch -p1 < ../PATCH/new/main/exp/uboot-rockchip-update-to-v2020.10.patch
+#patch -p1 < ../PATCH/new/main/exp/rockchip-fix-NanoPi-R2S-GMAC-clock-name.patch
 
 #update r8152 driver
 wget -O- https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3178.patch | patch -p1
