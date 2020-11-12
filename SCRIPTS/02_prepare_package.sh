@@ -14,8 +14,6 @@ cp -f ../PATCH/new/main/xanmod_5.4.patch ./target/linux/generic/hack-5.4/000-xan
 wget -q https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3580.patch
 patch -p1 < ./3580.patch
 }
-wget -q https://patch-diff.githubusercontent.com/raw/openwrt/openwrt/pull/3580.patch
-patch -p1 < ./3580.patch
 
 notExce(){
 #RT Kernel
