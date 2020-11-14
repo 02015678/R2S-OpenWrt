@@ -2,7 +2,6 @@
 clear
 
 wget -O- https://github.com/project-openwrt/openwrt/commit/d8df86130d172b3ce262d2744e2ddd2a6eed5f50.patch | patch -p1
-sed -i '/rtl8152/d' ./target/linux/rockchip/image/armv8.mk
 
 notExce(){
 #blocktrron.git
