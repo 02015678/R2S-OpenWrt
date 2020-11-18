@@ -1,4 +1,4 @@
-name: R2S-OpenWrt-Without-Docker
+name: R2S-OpenWrt-Docker
 
 on:
   schedule:
