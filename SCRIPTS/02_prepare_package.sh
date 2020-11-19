@@ -43,7 +43,7 @@ sed -i '/rtl8152/d' ./target/linux/rockchip/image/armv8.mk
 #patch i2c0（服务于OLED，可选
 cp -f ../PATCH/new/main/998-rockchip-enable-i2c0-on-NanoPi-R2S.patch ./target/linux/rockchip/patches-5.4/998-rockchip-enable-i2c0-on-NanoPi-R2S.patch
 #OC（提升主频，可选
-cp -f ../PATCH/new/main/999-unlock-1608mhz-rk3328.patch ./target/linux/rockchip/patches-5.4/999-unlock-1608mhz-rk3328.patch
+cp -f ../PATCH/new/main/999-unlock-1512mhz-rk3328.patch ./target/linux/rockchip/patches-5.4/999-unlock-1512mhz-rk3328.patch
 #SWAP LAN WAN（满足千兆场景，可选
 sed -i 's,"eth1" "eth0","eth0" "eth1",g' target/linux/rockchip/armv8/base-files/etc/board.d/02_network
 sed -i "s,'eth1' 'eth0','eth0' 'eth1',g" target/linux/rockchip/armv8/base-files/etc/board.d/02_network
@@ -67,7 +67,7 @@ svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network
 pushd target/linux/generic/hack-5.4
 wget https://github.com/coolsnowwolf/lede/raw/master/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch
 popd
-#Patch FireWall 以增添fullcone功能 
+#Patch FireWall 以增添fullcone功能
 mkdir package/network/config/firewall/patches
 wget -P package/network/config/firewall/patches/ https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/fullconenat.patch
 # Patch LuCI 以增添fullcone开关
@@ -207,11 +207,6 @@ git clone -b master --depth 1 https://github.com/jerrykuku/luci-theme-argon.git 
 git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-argon-config.git package/new/luci-app-argon-config
 #edge主题
 git clone -b master --depth 1 https://github.com/garypang13/luci-theme-edge.git package/new/luci-theme-edge
-#AdGuard
-cp -rf ../openwrt-lienol/package/diy/luci-app-adguardhome ./package/new/luci-app-adguardhome
-cp -rf ../openwrt-lienol/package/diy/adguardhome ./package/new/adguardhome
-#svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ntlf9t/AdGuardHome package/new/AdGuardHome
-#ChinaDNS
 git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
 git clone -b master --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/chinadns-ng
 #VSSR
@@ -323,6 +318,13 @@ svn co https://github.com/openwrt/packages/trunk/utils/yq feeds/packages/utils/y
 ln -sf ../../../feeds/packages/utils/yq ./package/feeds/packages/yq
 rm -rf ./feeds/packages/utils/lvm2
 svn co https://github.com/openwrt/packages/trunk/utils/lvm2 feeds/packages/utils/lvm2
+# File Transfer
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-filetransfer  package/lean/luci-app-filetransfer
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-fs package/lean/luci-lib-fs
+#NPS内网穿透
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/npc package/lean/npc
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-nps package/lean/luci-app-nps
+sed -i 's,default n,default y,g' feeds/packages/utils/coremark/Makefile
 #补全部分依赖（实际上并不会用到
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/libs/libnetfilter-log package/libs/libnetfilter-log
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/libs/libnetfilter-queue package/libs/libnetfilter-queue
