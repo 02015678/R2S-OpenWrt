@@ -2,10 +2,10 @@
 set -o pipefail
 rm -rf  /tmp/chinadns-ng
 mkdir /tmp/chinadns-ng
-wget https://cdn.jsdelivr.net/gh/pexcn/daily@gh-pages/chnroute/chnroute.txt -nv -O /tmp/chinadns-ng/chnroute.txt
-wget https://cdn.jsdelivr.net/gh/pexcn/daily@gh-pages/chnroute/chnroute-v6.txt -nv -O /tmp/chinadns-ng/chnroute6.txt
-wget https://cdn.jsdelivr.net/gh/pexcn/daily@gh-pages/gfwlist/gfwlist.txt -nv -O /tmp/chinadns-ng/gfwlist.txt
-wget https://cdn.jsdelivr.net/gh/pexcn/daily@gh-pages/chinalist/chinalist.txt -nv -O /tmp/chinadns-ng/chinalist.txt
+wget https://raw.githubusercontent.com/pexcn/daily/gh-pages/chnroute/chnroute.txt -nv -O /tmp/chinadns-ng/chnroute.txt
+wget https://raw.githubusercontent.com/pexcn/daily/gh-pages/chnroute/chnroute-v6.txt -nv -O /tmp/chinadns-ng/chnroute6.txt
+wget https://raw.githubusercontent.com/pexcn/daily/gh-pages/gfwlist/gfwlist.txt -nv -O /tmp/chinadns-ng/gfwlist.txt
+wget https://raw.githubusercontent.com/pexcn/daily/gh-pages/chinalist/chinalist.txt -nv -O /tmp/chinadns-ng/chinalist.txt
 find /tmp/chinadns-ng/ -size -20k -exec rm {} \;
 chmod -R  755  /tmp/chinadns-ng
 cp -rf /tmp/chinadns-ng/** /etc/chinadns-ng
