@@ -186,7 +186,7 @@ ln -sf ../../../feeds/packages/utils/coremark ./package/feeds/packages/coremark
 sed -i 's,default n,default y,g' feeds/packages/utils/coremark/Makefile
 #迅雷快鸟
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-xlnetacc package/lean/luci-app-xlnetacc
-git clone --depth 1 https://github.com/garypang13/luci-app-xlnetacc.git package/lean/luci-app-xlnetacc
+git clone https://github.com/garypang13/luci-app-xlnetacc package/lean/luci-app-xlnetacc
 #DDNS
 rm -rf ./feeds/packages/net/ddns-scripts
 rm -rf ./feeds/luci/applications/luci-app-ddns
