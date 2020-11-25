@@ -69,10 +69,10 @@ wget https://github.com/coolsnowwolf/lede/raw/master/target/linux/generic/hack-5
 popd
 #Patch FireWall 以增添fullcone功能
 mkdir package/network/config/firewall/patches
-wget -P package/network/config/firewall/patches/ https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/fullconenat.patch
+wget -P package/network/config/firewall/patches/ https://github.com/QiuSimons/fullconenat-fw3-patch-LGA1150/raw/master/fullconenat.patch
 # Patch LuCI 以增添fullcone开关
 pushd feeds/luci
-wget -O- https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/luci.patch | git apply
+wget -O- https://github.com/QiuSimons/fullconenat-fw3-patch-LGA1150/raw/master/luci.patch | git apply
 popd
 #FullCone 相关组件
 cp -rf ../openwrt-lienol/package/network/fullconenat ./package/network/fullconenat
@@ -116,19 +116,19 @@ rm -rf ./package/network/utils/curl
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/utils/curl package/network/utils/curl
 #更换Node版本
 rm -rf ./feeds/packages/lang/node
-svn co https://github.com/nxhack/openwrt-node-packages/trunk/node feeds/packages/lang/node
+svn co https://github.com/QiuSimons/openwrt-node-packages-nxhack/trunk/node feeds/packages/lang/node
 rm -rf ./feeds/packages/lang/node-arduino-firmata
-svn co https://github.com/nxhack/openwrt-node-packages/trunk/node-arduino-firmata feeds/packages/lang/node-arduino-firmata
+svn co https://github.com/QiuSimons/openwrt-node-packages-nxhack/trunk/node-arduino-firmata feeds/packages/lang/node-arduino-firmata
 rm -rf ./feeds/packages/lang/node-cylon
-svn co https://github.com/nxhack/openwrt-node-packages/trunk/node-cylon feeds/packages/lang/node-cylon
+svn co https://github.com/QiuSimons/openwrt-node-packages-nxhack/trunk/node-cylon feeds/packages/lang/node-cylon
 rm -rf ./feeds/packages/lang/node-hid
-svn co https://github.com/nxhack/openwrt-node-packages/trunk/node-hid feeds/packages/lang/node-hid
+svn co https://github.com/QiuSimons/openwrt-node-packages-nxhack/trunk/node-hid feeds/packages/lang/node-hid
 rm -rf ./feeds/packages/lang/node-homebridge
-svn co https://github.com/nxhack/openwrt-node-packages/trunk/node-homebridge feeds/packages/lang/node-homebridge
+svn co https://github.com/QiuSimons/openwrt-node-packages-nxhack/trunk/node-homebridge feeds/packages/lang/node-homebridge
 rm -rf ./feeds/packages/lang/node-serialport
-svn co https://github.com/nxhack/openwrt-node-packages/trunk/node-serialport feeds/packages/lang/node-serialport
+svn co https://github.com/QiuSimons/openwrt-node-packages-nxhack/trunk/node-serialport feeds/packages/lang/node-serialport
 rm -rf ./feeds/packages/lang/node-serialport-bindings
-svn co https://github.com/nxhack/openwrt-node-packages/trunk/node-serialport-bindings feeds/packages/lang/node-serialport-bindings
+svn co https://github.com/QiuSimons/openwrt-node-packages-nxhack/trunk/node-serialport-bindings feeds/packages/lang/node-serialport-bindings
 #更换libcap
 rm -rf ./feeds/packages/libs/libcap/
 svn co https://github.com/openwrt/packages/trunk/libs/libcap feeds/packages/libs/libcap
@@ -166,18 +166,18 @@ git clone --depth 1 https://github.com/NateLol/luci-app-beardropper.git package/
 sed -i 's/"luci.fs"/"luci.sys".net/g' package/luci-app-beardropper/luasrc/model/cbi/beardropper/setting.lua
 sed -i '/firewall/d' package/luci-app-beardropper/root/etc/uci-defaults/luci-beardropper
 #luci-app-freq
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/luci-app-cpufreq package/lean/luci-app-cpufreq
+svn co https://github.com/QiuSimons/openwrt-ctcgfw/branches/master/package/lean/luci-app-cpufreq package/lean/luci-app-cpufreq
 patch -p1 < ../PATCH/new/package/luci-app-freq.patch
 #京东签到
 git clone --depth 1 https://github.com/jerrykuku/node-request.git package/new/node-request
 git clone --depth 1 https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/new/luci-app-jd-dailybonus
 #arpbind
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind package/lean/luci-app-arpbind
+svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/luci-app-arpbind package/lean/luci-app-arpbind
 #Adbyby
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus package/lean/luci-app-adbyby-plus
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby package/lean/adbyby
+svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/luci-app-adbyby-plus package/lean/luci-app-adbyby-plus
+svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/adbyby package/lean/adbyby
 #访问控制
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accesscontrol package/lean/luci-app-accesscontrol
+svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/luci-app-accesscontrol package/lean/luci-app-accesscontrol
 cp -rf ../PATCH/duplicate/luci-app-control-weburl ./package/new/luci-app-control-weburl
 #AutoCore
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/lean/autocore
@@ -185,23 +185,23 @@ svn co https://github.com/project-openwrt/packages/trunk/utils/coremark feeds/pa
 ln -sf ../../../feeds/packages/utils/coremark ./package/feeds/packages/coremark
 sed -i 's,default n,default y,g' feeds/packages/utils/coremark/Makefile
 #迅雷快鸟
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-xlnetacc package/lean/luci-app-xlnetacc
-git clone https://github.com/garypang13/luci-app-xlnetacc package/lean/luci-app-xlnetacc
+#svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/luci-app-xlnetacc package/lean/luci-app-xlnetacc
+git clone https://github.com/QiuSimons/luci-app-xlnetacc-garypang13 package/lean/luci-app-xlnetacc
 #DDNS
 rm -rf ./feeds/packages/net/ddns-scripts
 rm -rf ./feeds/luci/applications/luci-app-ddns
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
+svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/ddns-scripts_aliyun package/lean/ddns-scripts_aliyun
+svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/ddns-scripts_dnspod package/lean/ddns-scripts_dnspod
 svn co https://github.com/openwrt/packages/branches/openwrt-18.06/net/ddns-scripts feeds/packages/net/ddns-scripts
 svn co https://github.com/openwrt/luci/branches/openwrt-18.06/applications/luci-app-ddns feeds/luci/applications/luci-app-ddns
 #Pandownload
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/pandownload-fake-server package/lean/pandownload-fake-server
+svn co https://github.com/QiuSimons/openwrt-ctcgfw/branches/master/package/lean/pandownload-fake-server package/lean/pandownload-fake-server
 #oled
 git clone -b master --depth 1 https://github.com/NateLol/luci-app-oled.git package/new/luci-app-oled
 #网易云解锁
 git clone --depth 1 https://github.com/project-openwrt/luci-app-unblockneteasemusic.git package/new/UnblockNeteaseMusic
 #定时重启
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/lean/luci-app-autoreboot
+svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/luci-app-autoreboot package/lean/luci-app-autoreboot
 #argon主题
 git clone -b master --depth 1 https://github.com/jerrykuku/luci-theme-argon.git package/new/luci-theme-argon
 git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-argon-config.git package/new/luci-app-argon-config
@@ -213,8 +213,8 @@ cp -rf ../openwrt-lienol/package/diy/adguardhome ./package/new/adguardhome
 #svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ntlf9t/AdGuardHome package/new/AdGuardHome
 svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ntlf9t/AdGuardHome package/new/AdGuardHome
 #ChinaDNS
-git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
-git clone https://github.com/pexcn/openwrt-chinadns-ng.git package/new/chinadns-ng
+git clone -b luci https://github.com/QiuSimons/openwrt-chinadns-ng-pexcn.git package/new/luci-app-chinadns-ng
+git clone https://github.com/QiuSimons/openwrt-chinadns-ng-pexcn.git package/new/chinadns-ng
 #VSSR
 git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
 git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
@@ -273,21 +273,21 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray package/new/v2r
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-plugin package/new/v2ray-plugin
 #luci-app-cpulimit
 cp -rf ../PATCH/duplicate/luci-app-cpulimit ./package/lean/luci-app-cpulimit
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/ntlf9t/cpulimit package/lean/cpulimit
+svn co https://github.com/QiuSimons/openwrt-ctcgfw/branches/master/package/ntlf9t/cpulimit package/lean/cpulimit
 #订阅转换
-svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ctcgfw/subconverter package/new/subconverter
-svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ctcgfw/jpcre2 package/new/jpcre2
-svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ctcgfw/rapidjson package/new/rapidjson
-svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ctcgfw/duktape package/new/duktape
+svn co https://github.com/QiuSimons/openwrt-ctcgfw/branches/openwrt-19.07/package/ctcgfw/subconverter package/new/subconverter
+svn co https://github.com/QiuSimons/openwrt-ctcgfw/branches/openwrt-19.07/package/ctcgfw/jpcre2 package/new/jpcre2
+svn co https://github.com/QiuSimons/openwrt-ctcgfw/branches/openwrt-19.07/package/ctcgfw/rapidjson package/new/rapidjson
+svn co https://github.com/QiuSimons/openwrt-ctcgfw/branches/openwrt-19.07/package/ctcgfw/duktape package/new/duktape
 #清理内存
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ramfree package/lean/luci-app-ramfree
+svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/luci-app-ramfree package/lean/luci-app-ramfree
 #打印机
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-printer package/lean/luci-app-usb-printer
+svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/luci-app-usb-printer package/lean/luci-app-usb-printer
 #流量监视
 git clone -b master --depth 1 https://github.com/brvphoenix/wrtbwmon.git package/new/wrtbwmon
 git clone -b master --depth 1 https://github.com/brvphoenix/luci-app-wrtbwmon.git package/new/luci-app-wrtbwmon
 #流量监管
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata package/lean/luci-app-netdata
+svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/luci-app-netdata package/lean/luci-app-netdata
 #OpenClash
 git clone -b master --depth 1 https://github.com/vernesong/OpenClash.git package/new/luci-app-openclash
 #SeverChan
@@ -349,9 +349,9 @@ svn co https://github.com/openwrt/packages/trunk/utils/collectd feeds/packages/u
 #ipv6-helper
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ipv6-helper package/lean/ipv6-helper
 #IPSEC
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ipsec-vpnd package/lean/luci-app-ipsec-vpnd
+svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/luci-app-ipsec-vpnd package/lean/luci-app-ipsec-vpnd
 #Zerotier
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/luci-app-zerotier package/lean/luci-app-zerotier
+svn co https://github.com/QiuSimons/openwrt-ctcgfw/branches/master/package/lean/luci-app-zerotier package/lean/luci-app-zerotier
 cp -f ../PATCH/new/script/move_2_services.sh ./package/lean/luci-app-zerotier/move_2_services.sh
 pushd package/lean/luci-app-zerotier
 bash move_2_services.sh
@@ -359,10 +359,10 @@ popd
 rm -rf ./feeds/packages/net/zerotier/files/etc/init.d/zerotier
 #UPNP（回滚以解决某些沙雕设备的沙雕问题
 rm -rf ./feeds/packages/net/miniupnpd
-svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
+svn co https://github.com/QiuSimons/packages-coolsnowwolf/trunk/net/miniupnpd feeds/packages/net/miniupnpd
 #KMS
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd package/lean/luci-app-vlmcsd
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd package/lean/vlmcsd
+svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/luci-app-vlmcsd package/lean/luci-app-vlmcsd
+svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/vlmcsd package/lean/vlmcsd
 #frp
 rm -f ./feeds/luci/applications/luci-app-frps
 rm -f ./feeds/luci/applications/luci-app-frpc
