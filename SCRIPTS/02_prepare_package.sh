@@ -139,13 +139,14 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accessco
 cp -rf ../PATCH/duplicate/luci-app-control-weburl ./package/new/luci-app-control-weburl
 #AutoCore
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/lean/autocore
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/coremark package/lean/coremark
+ln -sf ../../../feeds/packages/utils/coremark ./package/feeds/packages/coremark
 # File Transfer
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-filetransfer  package/lean/luci-app-filetransfer
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-fs package/lean/luci-lib-fs
 #NPS内网穿透
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/npc package/lean/npc
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-nps package/lean/luci-app-nps
+svn co https://github.com/project-openwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
 #迅雷快鸟
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-xlnetacc package/lean/luci-app-xlnetacc
 git clone https://github.com/garypang13/luci-app-xlnetacc package/lean/luci-app-xlnetacc
@@ -212,6 +213,7 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus package/new/trojan-plus
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray package/new/xray
 #luci-app-cpulimit
 cp -rf ../PATCH/duplicate/luci-app-cpulimit ./package/lean/luci-app-cpulimit
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/ntlf9t/cpulimit package/lean/cpulimit
