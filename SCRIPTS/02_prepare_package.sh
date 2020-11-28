@@ -139,6 +139,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accessco
 cp -rf ../PATCH/duplicate/luci-app-control-weburl ./package/new/luci-app-control-weburl
 #AutoCore
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/lean/autocore
+svn co https://github.com/project-openwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
 ln -sf ../../../feeds/packages/utils/coremark ./package/feeds/packages/coremark
 # File Transfer
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-filetransfer  package/lean/luci-app-filetransfer
@@ -146,7 +147,6 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-fs packa
 #NPS内网穿透
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/npc package/lean/npc
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-nps package/lean/luci-app-nps
-svn co https://github.com/project-openwrt/packages/trunk/utils/coremark feeds/packages/utils/coremark
 #迅雷快鸟
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-xlnetacc package/lean/luci-app-xlnetacc
 git clone https://github.com/garypang13/luci-app-xlnetacc package/lean/luci-app-xlnetacc
@@ -174,7 +174,6 @@ git clone -b master --single-branch https://github.com/garypang13/luci-theme-edg
 cp -rf ../openwrt-lienol/package/diy/luci-app-adguardhome ./package/new/luci-app-adguardhome
 cp -rf ../openwrt-lienol/package/diy/adguardhome ./package/new/adguardhome
 #svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ntlf9t/AdGuardHome package/new/AdGuardHome
-svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ntlf9t/AdGuardHome package/new/AdGuardHome
 #ChinaDNS
 git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
 git clone https://github.com/pexcn/openwrt-chinadns-ng.git package/new/chinadns-ng
