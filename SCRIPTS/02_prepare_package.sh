@@ -31,6 +31,15 @@ sed -i '/rtl8152/d' ./target/linux/rockchip/image/armv8.mk
 #HW-RNG（硬件随机数，可选
 patch -p1 < ../PATCH/new/main/Support-hardware-random-number-generator-for-RK3328.patch
 sed -i 's/-f/-f -i/g' feeds/packages/utils/rng-tools/files/rngd.init
+echo '
+CONFIG_CRYPTO_DRBG=y
+CONFIG_CRYPTO_DRBG_HMAC=y
+CONFIG_CRYPTO_DRBG_MENU=y
+CONFIG_CRYPTO_JITTERENTROPY=y
+CONFIG_CRYPTO_RNG=y
+CONFIG_CRYPTO_RNG2=y
+CONFIG_CRYPTO_RNG_DEFAULT=y
+' >> ./target/linux/rockchip/armv8/config-5.4
 #patch i2c0（服务于OLED，可选
 cp -f ../PATCH/new/main/998-rockchip-enable-i2c0-on-NanoPi-R2S.patch ./target/linux/rockchip/patches-5.4/998-rockchip-enable-i2c0-on-NanoPi-R2S.patch
 #OC（提升主频，可选
@@ -147,6 +156,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-fs packa
 #NPS内网穿透
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/npc package/lean/npc
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-nps package/lean/luci-app-nps
+sed -i 's,default n,default y,g' feeds/packages/utils/coremark/Makefile
 #迅雷快鸟
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-xlnetacc package/lean/luci-app-xlnetacc
 git clone https://github.com/garypang13/luci-app-xlnetacc package/lean/luci-app-xlnetacc
@@ -245,6 +255,7 @@ git clone -b master --single-branch https://github.com/destan19/OpenAppFilter pa
 svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman package/luci-app-dockerman
 svn co https://github.com/lisaac/luci-lib-docker/trunk/collections/luci-lib-docker package/luci-lib-docker
 svn co https://github.com/openwrt/packages/trunk/utils/docker-ce feeds/packages/utils/docker-ce
+sed -i '/runc.installer/d' ./feeds/packages/utils/docker-ce/Makefile
 ln -sf ../../../feeds/packages/utils/docker-ce ./package/feeds/packages/docker-ce
 svn co https://github.com/openwrt/packages/trunk/utils/cgroupfs-mount feeds/packages/utils/cgroupfs-mount
 ln -sf ../../../feeds/packages/utils/cgroupfs-mount ./package/feeds/packages/cgroupfs-mount
@@ -261,6 +272,10 @@ ln -sf ../../../feeds/packages/utils/yq ./package/feeds/packages/yq
 rm -rf ./feeds/packages/utils/lvm2
 svn co https://github.com/openwrt/packages/trunk/utils/lvm2 feeds/packages/utils/lvm2
 #补全部分依赖（实际上并不会用到
+svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/libs/libnetfilter-log package/libs/libnetfilter-log
+svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/libs/libnetfilter-queue package/libs/libnetfilter-queue
+svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/libs/libnetfilter-cttimeout package/libs/libnetfilter-cttimeout
+svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/libs/libnetfilter-cthelper package/libs/libnetfilter-cthelper
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/utils/fuse package/utils/fuse
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/services/samba36 package/network/services/samba36
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/libs/libconfig package/libs/libconfig
