@@ -185,8 +185,8 @@ svn co https://github.com/project-openwrt/packages/trunk/utils/coremark feeds/pa
 ln -sf ../../../feeds/packages/utils/coremark ./package/feeds/packages/coremark
 sed -i 's,default n,default y,g' feeds/packages/utils/coremark/Makefile
 #迅雷快鸟
-#svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/luci-app-xlnetacc package/lean/luci-app-xlnetacc
-git clone https://github.com/QiuSimons/luci-app-xlnetacc-garypang13 package/lean/luci-app-xlnetacc
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-xlnetacc package/lean/luci-app-xlnetacc
+git clone --depth 1 https://github.com/garypang13/luci-app-xlnetacc.git package/lean/luci-app-xlnetacc
 #DDNS
 rm -rf ./feeds/packages/net/ddns-scripts
 rm -rf ./feeds/luci/applications/luci-app-ddns
@@ -206,21 +206,17 @@ svn co https://github.com/QiuSimons/lede-coolsnowwolf/trunk/package/lean/luci-ap
 git clone -b master --depth 1 https://github.com/jerrykuku/luci-theme-argon.git package/new/luci-theme-argon
 git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-argon-config.git package/new/luci-app-argon-config
 #edge主题
-git clone -b master --single-branch https://github.com/garypang13/luci-theme-edge package/new/luci-theme-edge
+git clone -b master --depth 1 https://github.com/garypang13/luci-theme-edge.git package/new/luci-theme-edge
 #AdGuard
 cp -rf ../openwrt-lienol/package/diy/luci-app-adguardhome ./package/new/luci-app-adguardhome
 cp -rf ../openwrt-lienol/package/diy/adguardhome ./package/new/adguardhome
 #svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/ntlf9t/AdGuardHome package/new/AdGuardHome
 #ChinaDNS
-git clone -b luci https://github.com/QiuSimons/openwrt-chinadns-ng-pexcn.git package/new/luci-app-chinadns-ng
-git clone https://github.com/QiuSimons/openwrt-chinadns-ng-pexcn.git package/new/chinadns-ng
+git clone -b luci --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/luci-app-chinadns-ng
+git clone -b master --depth 1 https://github.com/pexcn/openwrt-chinadns-ng.git package/new/chinadns-ng
 #VSSR
 git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-vssr.git package/lean/luci-app-vssr
 git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
-sed -i 's,default n,default y,g' package/lean/luci-app-vssr/Makefile
-sed -i '/V2ray:v2ray/d' package/lean/luci-app-vssr/Makefile
-sed -i 's,ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305,ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256,g' package/lean/luci-app-vssr/root/usr/share/vssr/genconfig_trojan.lua
-sed -i 's,TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256,TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256,g' package/lean/luci-app-vssr/root/usr/share/vssr/genconfig_trojan.lua
 #SSRP
 #svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
 svn co https://github.com/Mattraks/helloworld/branches/Preview/luci-app-ssr-plus package/lean/luci-app-ssr-plus
