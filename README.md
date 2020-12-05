@@ -3,11 +3,11 @@
 
 ### 请勿用于商业用途!!! 请勿用于商业用途!!! 请勿用于商业用途!!! 请勿用于商业用途!!! 请勿用于商业用途!!!
 
-### 下载地址：
-https://github.com/02015678/R2S-OpenWrt/releases
+### 稳定版下载地址：
+https://github.com/02015678/R2S-OpenWrt/releases/tag/R2S-02015678-2020-08-31
 
-### 追新党请移步 (需要登录)：
-https://github.com/project-openwrt/R2S-OpenWrt/actions
+### 追新党请移步：
+https://github.com/02015678/R2S-OpenWrt/releases
 
 ### Docker版本自行fork，更换Docker版seed，并在自己的Action中自取
 
