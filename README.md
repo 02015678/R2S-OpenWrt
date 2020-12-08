@@ -4,10 +4,8 @@
 ### 稳定版下载地址：
 https://github.com/02015678/R2S-OpenWrt/releases/tag/R2S-02015678-2020-08-31
 
-### 追新党请移步：
+### 追新党请移步（跟随上游频繁更新，不保证稳定）：
 https://github.com/02015678/R2S-OpenWrt/releases
-
-### Docker版本自行fork，更换Docker版seed，并在自己的Action中自取
 
 ### 本地一键编译命令（注意装好依赖）：
 安装依赖：
