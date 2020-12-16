@@ -87,7 +87,7 @@ patch -p1 < ../PATCH/new/package/luci-app-firewall_add_sfe_switch.patch
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/lean/shortcut-fe
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/fast-classifier package/lean/fast-classifier
 cp -f ../PATCH/duplicate/shortcut-fe ./package/base-files/files/etc/init.d
-wget -qO - https://github.com/AmadeusGhost/lede/commit/5e95fd8572d5727ccbfe199efbd5d98297d8643b.patch | patch -p1
+#wget -qO - https://github.com/AmadeusGhost/lede/commit/5e95fd8572d5727ccbfe199efbd5d98297d8643b.patch | patch -p1
 
 ##获取额外package
 #（不用注释这里的任何东西，这不会对提升action的执行速度起到多大的帮助
@@ -102,6 +102,9 @@ cp -rf ../NoTengoBattery/package/system/compressed-memory ./package/system/compr
 #更换cryptodev-linux
 rm -rf ./package/kernel/cryptodev-linux
 svn co https://github.com/project-openwrt/openwrt/trunk/package/kernel/cryptodev-linux package/kernel/cryptodev-linux
+#降级openssl（解决性能问题
+rm -rf ./package/libs/openssl
+svn co https://github.com/openwrt/openwrt/branches/efe837de842bf4c9df1deae22e4bdaab3f92d960/package/libs/openssl package/libs/openssl
 #更换lzo
 svn co https://github.com/openwrt/packages/trunk/libs/lzo feeds/packages/libs/lzo
 ln -sf ../../../feeds/packages/libs/lzo ./package/feeds/packages/lzo
@@ -225,6 +228,7 @@ svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/lean/naivepr
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/new/luci-app-passwall
 sed -i 's,default n,default y,g' package/new/luci-app-passwall/Makefile
 sed -i '/V2ray:v2ray/d' package/new/luci-app-passwall/Makefile
+sed -i '/https_dns_proxy:https-dns-proxy/d' package/new/luci-app-passwall/Makefile
 cp -f ../PATCH/new/script/move_2_services.sh ./package/new/luci-app-passwall/move_2_services.sh
 pushd package/new/luci-app-passwall
 bash move_2_services.sh
@@ -269,7 +273,7 @@ git clone -b master --depth 1 https://github.com/destan19/OpenAppFilter.git pack
 #Docker
 svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman package/luci-app-dockerman
 svn co https://github.com/lisaac/luci-lib-docker/trunk/collections/luci-lib-docker package/luci-lib-docker
-svn co https://github.com/openwrt/packages/trunk/utils/docker-ce feeds/packages/utils/docker-ce
+svn co https://github.com/openwrt/packages/branches/680b76de070883471419dd787f424e825e387f00/utils/docker-ce feeds/packages/utils/docker-ce
 sed -i '/runc.installer/d' ./feeds/packages/utils/docker-ce/Makefile
 ln -sf ../../../feeds/packages/utils/docker-ce ./package/feeds/packages/docker-ce
 svn co https://github.com/openwrt/packages/trunk/utils/cgroupfs-mount feeds/packages/utils/cgroupfs-mount
