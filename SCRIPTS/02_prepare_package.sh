@@ -104,7 +104,7 @@ rm -rf ./package/kernel/cryptodev-linux
 svn co https://github.com/project-openwrt/openwrt/trunk/package/kernel/cryptodev-linux package/kernel/cryptodev-linux
 #降级openssl（解决性能问题
 rm -rf ./package/libs/openssl
-svn co https://github.com/openwrt/openwrt/branches/efe837de842bf4c9df1deae22e4bdaab3f92d960/package/libs/openssl package/libs/openssl
+svn co -r 90110 https://github.com/openwrt/openwrt/trunk/package/libs/openssl package/libs/openssl
 #更换lzo
 svn co https://github.com/openwrt/packages/trunk/libs/lzo feeds/packages/libs/lzo
 ln -sf ../../../feeds/packages/libs/lzo ./package/feeds/packages/lzo
@@ -199,14 +199,17 @@ git clone -b master --depth 1 https://github.com/jerrykuku/luci-app-vssr.git pac
 git clone -b master --depth 1 https://github.com/jerrykuku/lua-maxminddb.git package/lean/lua-maxminddb
 sed -i 's,default n,default y,g' package/lean/luci-app-vssr/Makefile
 sed -i '/V2ray:v2ray/d' package/lean/luci-app-vssr/Makefile
+sed -i 's,ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305,ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256,g' package/lean/luci-app-vssr/root/usr/share/vssr/genconfig_trojan.lua
+sed -i 's,TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256,TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256,g' package/lean/luci-app-vssr/root/usr/share/vssr/genconfig_trojan.lua
 #SSRP
 svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/lean/luci-app-ssr-plus
-#pushd package/lean
-#wget -qO - https://patch-diff.githubusercontent.com/raw/fw876/helloworld/pull/265.patch | patch -p1
-#popd
-#svn co https://github.com/project-openwrt/openwrt/trunk/package/lean/luci-app-ssr-plus package/lean/luci-app-ssr-plus
+pushd package/lean
+#wget -qO - https://patch-diff.githubusercontent.com/raw/fw876/helloworld/pull/271.patch | patch -p1
+popd
 sed -i 's,default n,default y,g' package/lean/luci-app-ssr-plus/Makefile
 sed -i '/V2ray:v2ray/d' package/lean/luci-app-ssr-plus/Makefile
+sed -i 's,ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305,ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256,g' package/lean/luci-app-ssr-plus/root/usr/share/shadowsocksr/gentrojanconfig.lua
+sed -i 's,TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256,TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256,g' package/lean/luci-app-ssr-plus/root/usr/share/shadowsocksr/gentrojanconfig.lua
 #SSRP依赖
 rm -rf ./feeds/packages/net/kcptun
 rm -rf ./feeds/packages/net/shadowsocks-libev
@@ -229,6 +232,8 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall pac
 sed -i 's,default n,default y,g' package/new/luci-app-passwall/Makefile
 sed -i '/V2ray:v2ray/d' package/new/luci-app-passwall/Makefile
 sed -i '/https_dns_proxy:https-dns-proxy/d' package/new/luci-app-passwall/Makefile
+sed -i 's,ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305,ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256,g' package/new/luci-app-passwall/luasrc/model/cbi/passwall/server/api/trojan.lua
+sed -i 's,TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA256,TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256,g' package/new/luci-app-passwall/luasrc/model/cbi/passwall/server/api/trojan.lua
 cp -f ../PATCH/new/script/move_2_services.sh ./package/new/luci-app-passwall/move_2_services.sh
 pushd package/new/luci-app-passwall
 bash move_2_services.sh
@@ -273,7 +278,7 @@ git clone -b master --depth 1 https://github.com/destan19/OpenAppFilter.git pack
 #Docker
 svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman package/luci-app-dockerman
 svn co https://github.com/lisaac/luci-lib-docker/trunk/collections/luci-lib-docker package/luci-lib-docker
-svn co https://github.com/openwrt/packages/branches/680b76de070883471419dd787f424e825e387f00/utils/docker-ce feeds/packages/utils/docker-ce
+svn co https://github.com/coolsnowwolf/packages/trunk/utils/docker-ce feeds/packages/utils/docker-ce
 sed -i '/runc.installer/d' ./feeds/packages/utils/docker-ce/Makefile
 ln -sf ../../../feeds/packages/utils/docker-ce ./package/feeds/packages/docker-ce
 svn co https://github.com/openwrt/packages/trunk/utils/cgroupfs-mount feeds/packages/utils/cgroupfs-mount
@@ -368,8 +373,6 @@ CONFIG_CRYPTO_SIMD=y
 # CONFIG_CRYPTO_SM3_ARM64_CE is not set
 # CONFIG_CRYPTO_SM4_ARM64_CE is not set
 ' >> ./target/linux/rockchip/armv8/config-5.4
-#let trojan prefer chacha20(vssr,passwall,ssrp
-patch -p1 < ../PATCH/new/main/chacha.patch
 
 ##最后的收尾工作
 #Lets Fuck
